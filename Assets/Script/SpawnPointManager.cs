@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -7,48 +7,48 @@ public class SpawnManager : MonoBehaviour
 
     [Header("Points de spawn")]
     [SerializeField] Transform[] spawnPoints;
-    [SerializeField] int activeSpawnIndex = 0;  // index du spawn actif
 
     [Header("Respawn")]
-    [SerializeField] float respawnDelay = 1.5f; // délai avant réapparition
+    [SerializeField] float respawnDelay = 1.5f;
+
+    int activeSpawnIndex = 0; // âœ… plus de SerializeField
 
     void Awake()
     {
-        // Singleton simple
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
-
-    public void Respawn(CharaController player)
+    // âœ… ReÃ§oit un PlayerHealth, plus un CharaController
+    public void Respawn(PlayerHealth player)
     {
         StartCoroutine(RespawnRoutine(player));
     }
 
-    IEnumerator RespawnRoutine(CharaController player)
+    IEnumerator RespawnRoutine(PlayerHealth player)
     {
         yield return new WaitForSeconds(respawnDelay);
-
-        Vector3 target = GetActiveSpawnPoint();
-        player.Revive(target);
+        player.Revive(GetActiveSpawnPoint());
     }
 
     Vector3 GetActiveSpawnPoint()
     {
         if (spawnPoints == null || spawnPoints.Length == 0)
         {
-            Debug.LogWarning("SpawnManager : aucun spawn point assigné !");
+            Debug.LogWarning("SpawnManager : aucun spawn point assignÃ© !");
             return Vector3.zero;
         }
-
-        activeSpawnIndex = Mathf.Clamp(activeSpawnIndex, 0, spawnPoints.Length - 1);
         return spawnPoints[activeSpawnIndex].position;
     }
 
-
     public void SetSpawnPoint(int index)
     {
-        activeSpawnIndex = Mathf.Clamp(index, 0, spawnPoints.Length - 1);
-        Debug.Log($"Checkpoint activé : spawn {activeSpawnIndex}");
+        if (spawnPoints == null || spawnPoints.Length == 0) return;
+
+        int clamped = Mathf.Clamp(index, 0, spawnPoints.Length - 1);
+        if (clamped <= activeSpawnIndex) return; // on ne rÃ©gresse pas
+
+        activeSpawnIndex = clamped;
+        Debug.Log($"Checkpoint activÃ© : spawn {activeSpawnIndex}");
     }
 }

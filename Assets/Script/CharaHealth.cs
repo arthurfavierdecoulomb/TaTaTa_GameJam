@@ -1,62 +1,61 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [SerializeField] float maxHealth = 100f;
-    [SerializeField] float droneDamage = 20f;
-    [SerializeField] float bulletDamage = 10f;
-    [SerializeField] float invincibilityDuration = 0.5f;
+    [Header("Vie")]
+    [SerializeField] int maxHealth = 3;
 
-    [Header("UI")]
-    [SerializeField] Image healthBar;
-    [SerializeField] float barSmoothSpeed = 5f;
+    int currentHealth;
+    bool isDead;
 
-    float currentHealth;
-    float displayedHealth;
-    float invincibilityTimer = 0f;
+    CharaController chara;
 
-    void Start()
+    void Awake()
     {
+        chara = GetComponent<CharaController>();
         currentHealth = maxHealth;
-        displayedHealth = maxHealth;
     }
 
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        displayedHealth = Mathf.Lerp(displayedHealth, currentHealth, barSmoothSpeed * Time.deltaTime);
-        if (healthBar != null)
-            healthBar.fillAmount = displayedHealth / maxHealth;
-
-        if (invincibilityTimer > 0f)
-            invincibilityTimer -= Time.deltaTime;
+        if (IsDeadZone(other.gameObject)) Die();
     }
 
-    public void TakeDamage(float amount)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (invincibilityTimer > 0f) return;
+        if (IsDeadZone(other.gameObject)) Die();
+    }
+
+    bool IsDeadZone(GameObject go)
+    {
+        return go.CompareTag("dead_zone") ||
+               go.layer == LayerMask.NameToLayer("dead_zone");
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (isDead) return;
         currentHealth -= amount;
-        currentHealth = Mathf.Max(currentHealth, 0f);
-        invincibilityTimer = invincibilityDuration;
-
-        if (currentHealth <= 0f)
-            GetComponent<CharaController>()?.Die(); // ← utilise le respawn, pas LoadScene
+        if (currentHealth <= 0) Die();
     }
 
-    // Appelé par CharaController.Revive() pour reset la vie au respawn
-    public void ResetHealth()
+    public void Die()
     {
+        if (isDead) return;
+        isDead = true;
+        chara.IsInputLocked = true;
+        chara.FreezePhysics(true);
+
+        
+        SpawnManager.Instance.Respawn(this);
+    }
+
+    public void Revive(Vector3 spawnPosition)
+    {
+        chara.Teleport(spawnPosition);
+        chara.FreezePhysics(false);
+        chara.IsInputLocked = false;
         currentHealth = maxHealth;
-        displayedHealth = maxHealth;
-        invincibilityTimer = 0f;
-    }
-
-    
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("DeadZone"))
-            GetComponent<CharaController>()?.Die(); // ← même chose ici
+        isDead = false;
     }
 }
