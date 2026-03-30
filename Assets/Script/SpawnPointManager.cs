@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     [Header("Respawn")]
     [SerializeField] float respawnDelay = 1.5f;
 
-    int activeSpawnIndex = 0; // ✅ plus de SerializeField
+    int activeSpawnIndex = 0; 
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
         Instance = this;
     }
 
-    // ✅ Reçoit un PlayerHealth, plus un CharaController
+    
     public void Respawn(PlayerHealth player)
     {
         StartCoroutine(RespawnRoutine(player));
