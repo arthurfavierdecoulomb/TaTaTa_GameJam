@@ -44,7 +44,8 @@ public class FlashlightStamina : MonoBehaviour
         // Définit un bool basé sur l'état du jeu (pause ou non)
         bool curPause = uiController.Pause;
         // Vérifie que le jeu n'est pas en pause avant d'éxecuter le code
-        if (!curPause) {
+        if (!curPause)
+        {
             if (isDead) return;
 
             // --- Drain ---
