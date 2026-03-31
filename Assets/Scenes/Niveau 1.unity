@@ -10622,6 +10622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46ae5e0a501f6d4db004f87903a989d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  uiController: {fileID: 1276274986}
   target: {fileID: 1276274984}
   smoothSpeed: 5
   magnitude: 0.01
@@ -19471,7 +19472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7ed7ef93436e945a430b071560a0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIController
-  PauseMenuUI: {fileID: 0}
+  PauseMenuUI: {fileID: 7938588366154763892, guid: b929551ae282bbe428a8b50c6657d547, type: 3}
+  Pause: 0
+  ButtonContinuePressed: 0
 --- !u!1 &1279976477
 GameObject:
   m_ObjectHideFlags: 0
@@ -31477,6 +31480,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 814382625570998919, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1276274986}
     - target: {fileID: 1477543080490809234, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
       propertyPath: JumpForce
       value: 7
@@ -31541,6 +31548,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5655746525890322712, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1276274986}
     - target: {fileID: 6309641574533351855, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
       propertyPath: m_SortingLayer
       value: 1

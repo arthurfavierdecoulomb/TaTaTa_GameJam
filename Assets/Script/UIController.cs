@@ -36,7 +36,6 @@ public class UIController : MonoBehaviour
     }
     // Remet le jeu en marche et réactive le son
     void ResumeState() {
-        
         Pause = false;
         Time.timeScale = 1f;
         AudioListener.pause = false;
