@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
-// using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -10,9 +10,7 @@ public class UIController : MonoBehaviour
     public bool Pause;
     public bool ButtonContinuePressed;
 
-    private void Start()
-    {
-
+    private void Start() {
         ButtonContinuePressed = false;
     }
     void Update()
@@ -53,7 +51,17 @@ public class UIController : MonoBehaviour
 
     public void Quit()
     {
+        SceneManager.LoadScene(0);
+    }
+
+    // Menu Title Screen UI
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Niveau 1");
+    }
+
+    public void QuitGame()
+    {
         Application.Quit();
-        // SceneManager.LoadScene("X");
     }
 }
