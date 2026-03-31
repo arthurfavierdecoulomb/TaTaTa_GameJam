@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public enum JumpMode { Normal, High }
 
@@ -14,7 +15,10 @@ public class CharaController : MonoBehaviour
     [SerializeField] float HighJumpForce = 28f;
     [SerializeField] float CoyoteTime = 0.15f;
     [SerializeField] float JumpBufferTime = 0.1f;
-    [SerializeField] int MaxAirJumps = 1;
+    [SerializeField] int MaxAirJumps = 3;
+
+    [Header("Jump UI")]
+    [SerializeField] Image[] jumpIcons;
 
     [Header("Ground Check")]
     [SerializeField] float GroundCheckDistance = 1.1f;
@@ -28,12 +32,16 @@ public class CharaController : MonoBehaviour
     bool isGrounded;
     JumpMode jumpMode = JumpMode.Normal;
 
-    // ✅ Exposé pour que PlayerHealth puisse bloquer les inputs
     public bool IsInputLocked { get; set; } = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
+        ResetJumps(); // assure 3 icônes visibles au spawn
     }
 
     void Update()
@@ -47,7 +55,6 @@ public class CharaController : MonoBehaviour
 
         if (isGrounded)
         {
-            airJumpsLeft = MaxAirJumps;
             coyoteTimeCounter = CoyoteTime;
         }
         else
@@ -71,6 +78,7 @@ public class CharaController : MonoBehaviour
             {
                 PerformJump();
                 airJumpsLeft--;
+                UpdateJumpUI(); // enlève une icône
             }
         }
     }
@@ -97,7 +105,29 @@ public class CharaController : MonoBehaviour
         jumpBufferCounter = 0f;
     }
 
-    
+    void UpdateJumpUI()
+    {
+        for (int i = 0; i < jumpIcons.Length; i++)
+        {
+            //ACTIVE / DESACTIVE complètement l'image
+            jumpIcons[i].gameObject.SetActive(i < airJumpsLeft);
+        }
+    }
+
+    // Recharge complète (respawn)
+    public void ResetJumps()
+    {
+        airJumpsLeft = MaxAirJumps;
+
+        // Force toutes les icônes visibles AVANT update (corrige ton bug des 2 icônes)
+        for (int i = 0; i < jumpIcons.Length; i++)
+        {
+            jumpIcons[i].gameObject.SetActive(true);
+        }
+
+        UpdateJumpUI();
+    }
+
     public void FreezePhysics(bool freeze)
     {
         rb.linearVelocity = Vector2.zero;
