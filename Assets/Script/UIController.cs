@@ -51,15 +51,13 @@ public class UIController : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene("Title Screen");
-        //SceneManager.UnloadSceneAsync("Niveau 1");
+        SceneManager.LoadScene(0);
     }
 
     // Menu Title Screen UI
     public void StartGame()
     {
         SceneManager.LoadScene("Niveau 1");
-        //SceneManager.UnloadSceneAsync("Title Screen");
     }
 
     public void QuitGame()
