@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56913942643192522}
   - component: {fileID: 8212315451023980192}
+  - component: {fileID: 5655746525890322712}
   m_Layer: 0
   m_Name: Spot Light 2D
   m_TagString: Untagged
@@ -84,6 +85,25 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &5655746525890322712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887478479222695406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b4842c58ca0824184ff34ce04f8ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightStamina
+  spotlight: {fileID: 8212315451023980192}
+  maxStamina: 100
+  drainPerSecond: 0.3
+  flickerMinInterval: 0.05
+  flickerMaxInterval: 0.2
+  weakIntensity: 0.3
+  normalIntensity: 1
 --- !u!1 &3778572734418717467
 GameObject:
   m_ObjectHideFlags: 0
