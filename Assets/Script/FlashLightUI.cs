@@ -11,7 +11,7 @@ public class FlashlightUI : MonoBehaviour
         if (flashlight == null || staminaText == null) return;
 
         float percent = (flashlight.CurrentStamina / flashlight.MaxStamina) * 100f;
-        staminaText.text = Mathf.CeilToInt(percent) + "%";
+        staminaText.text = Mathf.CeilToInt(percent) + "";
 
         // Couleur selon le niveau
         if (percent > 30f)
