@@ -46,18 +46,11 @@ public class PlayerHealth : MonoBehaviour
         chara.IsInputLocked = true;
         chara.FreezePhysics(true);
 
-        // Affiche l'écran de mort, puis respawn une fois le fondu terminé
+        SpawnManager.Instance.Respawn(this);
+
         if (DeathScreenManager.Instance != null)
         {
-            DeathScreenManager.Instance.ShowDeathScreen(() =>
-            {
-                SpawnManager.Instance.Respawn(this);
-            });
-        }
-        else
-        {
-            // Fallback si pas de DeathScreenManager dans la scène
-            SpawnManager.Instance.Respawn(this);
+            DeathScreenManager.Instance.ShowDeathScreen(null);
         }
     }
 

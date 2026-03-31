@@ -117,7 +117,7 @@ public class DeathScreenManager : MonoBehaviour
 
         // Compteur de morts
         if (deathCounter != null)
-            deathCounter.text = "tu es mort " + deathCount + " fois...";
+            deathCounter.text = "Vous êtes mort " + deathCount + " fois.";
 
         SetPanelAlpha(1f);
         if (deathPanel != null) deathPanel.SetActive(true);
