@@ -6,6 +6,7 @@ TagManager:
   tags:
   - dead_zone
   - DeadZone
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

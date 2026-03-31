@@ -3,6 +3,10 @@ using UnityEngine.Rendering.Universal; // Pour Light2D
 
 public class FlashlightStamina : MonoBehaviour
 {
+    // Pour récupérer l'état du jeu (pause ou non)
+    [Header("Pause")]
+    public UIController uiController;
+
     [Header("Spotlight")]
     public Light2D spotlight;
 
@@ -37,35 +41,40 @@ public class FlashlightStamina : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;
+        // Définit un bool basé sur l'état du jeu (pause ou non)
+        bool curPause = uiController.Pause;
+        // Vérifie que le jeu n'est pas en pause avant d'éxecuter le code
+        if (!curPause) {
+            if (isDead) return;
 
-        // --- Drain ---
-        currentStamina -= drainPerSecond * Time.deltaTime;
-        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+            // --- Drain ---
+            currentStamina -= drainPerSecond * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
 
-        float percent = currentStamina / maxStamina;
+            float percent = currentStamina / maxStamina;
 
-        // --- 0% : mort complète ---
-        if (currentStamina <= 0f)
-        {
-            spotlight.enabled = false;
-            isDead = true;
-            isFlickering = false;
-            return;
-        }
+            // --- 0% : mort complète ---
+            if (currentStamina <= 0f)
+            {
+                spotlight.enabled = false;
+                isDead = true;
+                isFlickering = false;
+                return;
+            }
 
-        // --- Sous 10% : flicker ---
-        if (percent <= 0.10f)
-        {
-            isFlickering = true;
-            spotlight.intensity = weakIntensity;
-            HandleFlicker();
-        }
-        else
-        {
-            isFlickering = false;
-            spotlight.enabled = true;
-            spotlight.intensity = normalIntensity;
+            // --- Sous 10% : flicker ---
+            if (percent <= 0.10f)
+            {
+                isFlickering = true;
+                spotlight.intensity = weakIntensity;
+                HandleFlicker();
+            }
+            else
+            {
+                isFlickering = false;
+                spotlight.enabled = true;
+                spotlight.intensity = normalIntensity;
+            }
         }
     }
 

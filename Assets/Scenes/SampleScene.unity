@@ -2282,6 +2282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46ae5e0a501f6d4db004f87903a989d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  uiController: {fileID: 1276274990}
   target: {fileID: 1276274984}
   smoothSpeed: 5
   magnitude: 0.01
@@ -3308,6 +3309,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 3
+--- !u!114 &1276274990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276274979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7ed7ef93436e945a430b071560a0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIController
+  PauseMenuUI: {fileID: 0}
+  Pause: 0
 --- !u!1 &1297678824
 GameObject:
   m_ObjectHideFlags: 0
@@ -6069,6 +6084,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 814382625570998919, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1276274990}
     - target: {fileID: 1477543080490809234, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
       propertyPath: JumpForce
       value: 5
@@ -6133,6 +6152,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5655746525890322712, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1276274990}
     - target: {fileID: 6309641574533351855, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -6179,6 +6202,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7815537933158876292, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1276274985}
+    - targetCorrespondingSourceObject: {fileID: 7815537933158876292, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1276274990}
   m_SourcePrefab: {fileID: 100100000, guid: 1992999fc575738448ab64914c2b0dde, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
