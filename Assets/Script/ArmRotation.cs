@@ -18,7 +18,6 @@ public class ArmRotation : MonoBehaviour
     {
         // Définit un bool basé sur l'état du jeu (pause ou non)
         bool curPause = uiController.Pause;
-        Debug.Log("Pause: " + curPause);
         // Vérifie que le jeu n'est pas en pause avant d'éxecuter le code
         if (!curPause) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
