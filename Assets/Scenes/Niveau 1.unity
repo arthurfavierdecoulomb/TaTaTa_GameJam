@@ -11246,6 +11246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &181206148
 SpriteRenderer:
   serializedVersion: 2
@@ -11539,6 +11540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &185468533
 SpriteRenderer:
   serializedVersion: 2
@@ -38860,6 +38862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &612315879
 SpriteRenderer:
   serializedVersion: 2
@@ -42911,6 +42914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &653072894
 SpriteRenderer:
   serializedVersion: 2
@@ -46113,6 +46117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &693166315
 SpriteRenderer:
   serializedVersion: 2
@@ -48390,6 +48395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &724943327
 SpriteRenderer:
   serializedVersion: 2
@@ -77736,6 +77742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &1137997095
 SpriteRenderer:
   serializedVersion: 2
@@ -79007,6 +79014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &1167169549
 SpriteRenderer:
   serializedVersion: 2
@@ -79955,6 +79963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &1181748589
 SpriteRenderer:
   serializedVersion: 2
@@ -123183,6 +123192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &1831724989
 SpriteRenderer:
   serializedVersion: 2
@@ -549821,6 +549831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb78bc11a1c77eb499d480d5d67d4037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battery
+  stamina: {fileID: 1132432903}
 --- !u!212 &2055901932
 SpriteRenderer:
   serializedVersion: 2
