@@ -30,6 +30,8 @@ public class CharaController : MonoBehaviour
     float jumpBufferCounter;
     int airJumpsLeft;
     bool isGrounded;
+    bool wasGrounded;
+    bool hasJumped = false;
     JumpMode jumpMode = JumpMode.Normal;
 
     public bool IsInputLocked { get; set; } = false;
@@ -41,7 +43,7 @@ public class CharaController : MonoBehaviour
 
     void Start()
     {
-        ResetJumps(); // assure 3 icônes visibles au spawn
+        ResetJumps();
     }
 
     void Update()
@@ -49,18 +51,22 @@ public class CharaController : MonoBehaviour
         if (IsInputLocked) return;
 
         inputX = Input.GetAxisRaw("Horizontal");
+
+        wasGrounded = isGrounded;
         isGrounded = Physics2D.Raycast(
             transform.position, Vector2.down, GroundCheckDistance, groundLayer
         );
 
+        // Atterrissage → remet juste hasJumped, PAS les double sauts
+        if (!wasGrounded && isGrounded)
+        {
+            hasJumped = false;
+        }
+
         if (isGrounded)
-        {
             coyoteTimeCounter = CoyoteTime;
-        }
         else
-        {
             coyoteTimeCounter -= Time.deltaTime;
-        }
 
         if (Input.GetButtonDown("Jump"))
             jumpBufferCounter = JumpBufferTime;
@@ -69,16 +75,21 @@ public class CharaController : MonoBehaviour
 
         if (jumpBufferCounter > 0f)
         {
-            if (coyoteTimeCounter > 0f)
+            // Saut depuis le sol
+            if (coyoteTimeCounter > 0f && !hasJumped)
             {
                 PerformJump();
                 coyoteTimeCounter = 0f;
+                jumpBufferCounter = 0f;
+                hasJumped = true;
             }
-            else if (airJumpsLeft > 0)
+            // Double saut en l'air
+            else if (airJumpsLeft > 0 && hasJumped)
             {
                 PerformJump();
                 airJumpsLeft--;
-                UpdateJumpUI(); // enlève une icône
+                UpdateJumpUI();
+                jumpBufferCounter = 0f;
             }
         }
     }
@@ -109,22 +120,14 @@ public class CharaController : MonoBehaviour
     {
         for (int i = 0; i < jumpIcons.Length; i++)
         {
-            //ACTIVE / DESACTIVE complètement l'image
             jumpIcons[i].gameObject.SetActive(i < airJumpsLeft);
         }
     }
 
-    // Recharge complète (respawn)
     public void ResetJumps()
     {
         airJumpsLeft = MaxAirJumps;
-
-        // Force toutes les icônes visibles AVANT update (corrige ton bug des 2 icônes)
-        for (int i = 0; i < jumpIcons.Length; i++)
-        {
-            jumpIcons[i].gameObject.SetActive(true);
-        }
-
+        hasJumped = false;
         UpdateJumpUI();
     }
 

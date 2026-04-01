@@ -29,6 +29,10 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnDelay);
         player.Revive(GetActiveSpawnPoint());
+
+       
+        CharaController chara = player.GetComponent<CharaController>();
+        if (chara != null) chara.ResetJumps();
     }
 
     Vector3 GetActiveSpawnPoint()

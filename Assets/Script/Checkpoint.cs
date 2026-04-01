@@ -1,8 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    [SerializeField] int spawnIndex; 
+    [SerializeField] int spawnIndex;
+    [SerializeField] bool rechargeDoubleJump = false; 
 
     bool activated = false;
 
@@ -13,5 +14,12 @@ public class Checkpoint : MonoBehaviour
 
         activated = true;
         SpawnManager.Instance.SetSpawnPoint(spawnIndex);
+
+        // Recharge les double sauts si coché
+        if (rechargeDoubleJump)
+        {
+            CharaController chara = other.GetComponent<CharaController>();
+            if (chara != null) chara.ResetJumps();
+        }
     }
 }
