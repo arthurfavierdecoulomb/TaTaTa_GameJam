@@ -68,9 +68,7 @@ public class UIController : MonoBehaviour
                 yield return new WaitWhile(() => myAudioSource.isPlaying);
                 SceneManager.LoadScene("Niveau 1");
                 break;
-            case 3:
-                yield return new WaitForSeconds(0.7f);
-                Application.Quit();
+            default:
                 break;
         }
     }
@@ -97,7 +95,6 @@ public class UIController : MonoBehaviour
 
     public void QuitGame()
     {
-        StartCoroutine(ChoixMenu(3));
-        
+        Application.Quit();
     }
 }
