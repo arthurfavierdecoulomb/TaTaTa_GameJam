@@ -14,7 +14,6 @@ public class CharaController : MonoBehaviour
     [SerializeField] float JumpForce = 18f;
     [SerializeField] float HighJumpForce = 28f;
     [SerializeField] float CoyoteTime = 0.15f;
-    [SerializeField] float JumpBufferTime = 0.1f;
     [SerializeField] int MaxAirJumps = 3;
 
     [Header("Jump UI")]
@@ -27,11 +26,9 @@ public class CharaController : MonoBehaviour
     Rigidbody2D rb;
     float inputX;
     float coyoteTimeCounter;
-    float jumpBufferCounter;
     int airJumpsLeft;
     bool isGrounded;
     bool wasGrounded;
-    // Phase du saut : 0 = au sol, 1 = premier saut effectué, 2+ = double sauts
     int jumpPhase = 0;
     JumpMode jumpMode = JumpMode.Normal;
 
@@ -71,11 +68,6 @@ public class CharaController : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
 
         if (Input.GetButtonDown("Jump"))
-            jumpBufferCounter = JumpBufferTime;
-        else
-            jumpBufferCounter -= Time.deltaTime;
-
-        if (Input.GetButtonDown("Jump"))
         {
             // Saut depuis le sol ou coyote
             if (coyoteTimeCounter > 0f && jumpPhase == 0)
@@ -84,12 +76,10 @@ public class CharaController : MonoBehaviour
                 coyoteTimeCounter = 0f;
                 jumpPhase = 1;
             }
-            // Double saut en l'air
-            else if (jumpPhase >= 1 && airJumpsLeft > 0)
+            // Double saut en l'air — infini
+            else if (jumpPhase >= 1)
             {
                 PerformJump();
-                airJumpsLeft--;
-                UpdateJumpUI();
                 jumpPhase++;
             }
         }
