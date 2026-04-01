@@ -2,6 +2,9 @@
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] AudioClip[] deathSound;
+    [SerializeField] AudioSource myAudioSource;
+
     [Header("Vie")]
     [SerializeField] int maxHealth = 3;
 
@@ -26,6 +29,13 @@ public class PlayerHealth : MonoBehaviour
         if (IsDeadZone(other.gameObject)) Die();
     }
 
+    void SoundDeath()
+    {
+        int monRandom = Random.Range(0, 4);
+        myAudioSource.clip = deathSound[monRandom];
+        myAudioSource.Play();
+    }
+
     bool IsDeadZone(GameObject go)
     {
         return go.CompareTag("dead_zone") ||
@@ -45,6 +55,8 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
         chara.IsInputLocked = true;
         chara.FreezePhysics(true);
+
+        SoundDeath();
 
         SpawnManager.Instance.Respawn(this);
 

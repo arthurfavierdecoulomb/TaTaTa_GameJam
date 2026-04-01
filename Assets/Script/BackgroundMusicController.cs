@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class BackgroundMusicController : MonoBehaviour
@@ -13,6 +14,7 @@ public class BackgroundMusicController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        myAudioBackgroundSource.UnPause();
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         myAudioBackgroundSource.clip = selectMusic[currentSceneIndex];
     }
