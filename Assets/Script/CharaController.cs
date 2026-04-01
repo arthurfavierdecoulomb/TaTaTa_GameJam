@@ -39,6 +39,7 @@ public class CharaController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void Start()
@@ -96,8 +97,12 @@ public class CharaController : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         if (IsInputLocked) return;
         HandleMovement();
+        if (rb.rotation != 0f)
+            rb.rotation = 0f;
+
     }
 
     void HandleMovement()

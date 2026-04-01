@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 34031dead084eb04cbb06eba2073128b
+guid: ebed6ca7bd59ff845b1f6263b4775e94
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4861631174415909997
-    second: anime course game jam jump_spritesheet 1_0
+      213: -2556130607462551929
+    second: anime course game jam jump_spritesheet 2 (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: anime course game jam jump_spritesheet 1_0
+      name: anime course game jam jump_spritesheet 2 (1)_0
       rect:
         serializedVersion: 2
-        x: 540
-        y: 141
-        width: 840
-        height: 798
+        x: 0
+        y: 13
+        width: 512
+        height: 486
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d64860c8bcbf77340800000000000000
-      internalID: 4861631174415909997
+      spriteID: 78ee0b661ccc68cd0800000000000000
+      internalID: -2556130607462551929
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      anime course game jam jump_spritesheet 1_0: 4861631174415909997
+      anime course game jam jump_spritesheet 2 (1)_0: -2556130607462551929
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
