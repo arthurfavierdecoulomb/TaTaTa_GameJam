@@ -31,7 +31,8 @@ public class CharaController : MonoBehaviour
     int airJumpsLeft;
     bool isGrounded;
     bool wasGrounded;
-    bool hasJumped = false;
+    // Phase du saut : 0 = au sol, 1 = premier saut effectué, 2+ = double sauts
+    int jumpPhase = 0;
     JumpMode jumpMode = JumpMode.Normal;
 
     public bool IsInputLocked { get; set; } = false;
@@ -39,7 +40,6 @@ public class CharaController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        
     }
 
     void Start()
@@ -58,10 +58,11 @@ public class CharaController : MonoBehaviour
             transform.position, Vector2.down, GroundCheckDistance, groundLayer
         );
 
-        // Atterrissage → remet juste hasJumped, PAS les double sauts
+        // Atterrissage
         if (!wasGrounded && isGrounded)
         {
-            hasJumped = false;
+            jumpPhase = 0;
+            coyoteTimeCounter = CoyoteTime;
         }
 
         if (isGrounded)
@@ -74,35 +75,33 @@ public class CharaController : MonoBehaviour
         else
             jumpBufferCounter -= Time.deltaTime;
 
-        if (jumpBufferCounter > 0f)
+        if (Input.GetButtonDown("Jump"))
         {
-            // Saut depuis le sol
-            if (coyoteTimeCounter > 0f && !hasJumped)
+            // Saut depuis le sol ou coyote
+            if (coyoteTimeCounter > 0f && jumpPhase == 0)
             {
                 PerformJump();
                 coyoteTimeCounter = 0f;
-                jumpBufferCounter = 0f;
-                hasJumped = true;
+                jumpPhase = 1;
             }
             // Double saut en l'air
-            else if (airJumpsLeft > 0 && hasJumped)
+            else if (jumpPhase >= 1 && airJumpsLeft > 0)
             {
                 PerformJump();
                 airJumpsLeft--;
                 UpdateJumpUI();
-                jumpBufferCounter = 0f;
+                jumpPhase++;
             }
         }
     }
 
     void FixedUpdate()
     {
-        
         if (IsInputLocked) return;
         HandleMovement();
+
         if (rb.rotation != 0f)
             rb.rotation = 0f;
-
     }
 
     void HandleMovement()
@@ -118,7 +117,6 @@ public class CharaController : MonoBehaviour
     {
         float force = (jumpMode == JumpMode.High) ? HighJumpForce : JumpForce;
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, force);
-        jumpBufferCounter = 0f;
     }
 
     void UpdateJumpUI()
@@ -132,7 +130,7 @@ public class CharaController : MonoBehaviour
     public void ResetJumps()
     {
         airJumpsLeft = MaxAirJumps;
-        hasJumped = false;
+        jumpPhase = 0;
         UpdateJumpUI();
     }
 
