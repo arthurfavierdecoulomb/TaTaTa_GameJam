@@ -17973,7 +17973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -47.296326, y: -259.13358}
+  m_AnchoredPosition: {x: -47.296387, y: -259.13358}
   m_SizeDelta: {x: 42.693115, y: 44.572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &279239035
@@ -44971,6 +44971,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!82 &672403554 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4449360933399110405, guid: 69d8f1963f78b464d8e48e4a7595e78c, type: 3}
+  m_PrefabInstance: {fileID: 1133397941}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &673269492 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4864928565677146292, guid: a4050f0bf5fb9254a9f8be4361e2dce1, type: 3}
@@ -129614,6 +129619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0c8c2dea04ccb45bb322278f5e2554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  deathSound:
+  - {fileID: 8300000, guid: 31b0a1fee9f66be468b5c6bfe1704cdd, type: 3}
+  - {fileID: 8300000, guid: c26e968f5f807d942b9e9271f36645e7, type: 3}
+  - {fileID: 8300000, guid: 2199fabe5706d9d4d83c1f093082e206, type: 3}
+  - {fileID: 8300000, guid: 9a6f24ddc994eb342a5777613eaa822e, type: 3}
+  - {fileID: 8300000, guid: 76020a65c46e5c249b6eb98b25396c90, type: 3}
+  myAudioSource: {fileID: 672403554}
   maxHealth: 3
 --- !u!50 &1912099545 stripped
 Rigidbody2D:
