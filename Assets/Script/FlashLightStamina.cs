@@ -41,8 +41,9 @@ public class FlashlightStamina : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"uiController: {uiController != null} | Pause: {uiController?.Pause} | isDead: {isDead} | stamina: {currentStamina}");
         // Définit un bool basé sur l'état du jeu (pause ou non)
-        bool curPause = uiController.Pause;
+        bool curPause = uiController != null && uiController.Pause;
         // Vérifie que le jeu n'est pas en pause avant d'éxecuter le code
         if (!curPause)
         {
